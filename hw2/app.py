@@ -1,7 +1,8 @@
 """
-A simple guestbook flask app.
+A recipes flask app.
 """
 import flask
+from flask.views import MethodView
 from index import Index
 from add import Add
 
@@ -17,6 +18,6 @@ app.add_url_rule('/add/',
                  methods=['GET', 'POST'])
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8888, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
 
 
