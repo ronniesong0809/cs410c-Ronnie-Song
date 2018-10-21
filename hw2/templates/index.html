@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Recipes Webapp</h2>
+
+    <h3>Add a new recipe <a href="{{ url_for('add') }}">here</a></h3>
+    <h3>Entries</h3>
+    {% for entry in entries %}
+        <p class=entry>
+        Title:           {{ entry.title }} <br>
+        Author:          {{ entry.author }} <br>
+        Ingredient List: {{ entry.ingredient }} <br>
+        Amount of Time:  {{ entry.time }} <br>
+        Skill Level:     {{ entry.skill }} <br>
+        Description:     {{ entry.description }}
+        </p>
+    {% endfor %}
+
+{% endblock %}
