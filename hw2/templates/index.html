@@ -6,13 +6,12 @@
     <h3>Recipes</h3><hr>
     {% for rp in rps %}
     <p class=rp>
-        <b>Title: </b>          {{ rp.title }} <br>
-        <b>Author: </b>         {{ rp.author }} <br>
-        <b>Ingredient List: </b>{{ rp.ingredient }} <br>
-        <b>Amount of Time: </b> {{ rp.time }} <br>
-        <b>Skill Level: </b>    {{ rp.skill }} <br>
-        <b>Description: </b>    {{ rp.description }} 
-        <hr>
+        <b>Title: </b>          {{ rps[rp].title }} <br>
+        <b>Author: </b>         {{ rps[rp].author }} <br>
+        <b>Ingredient List: </b>{{ rps[rp].ingredient }} <br>
+        <b>Amount of Time: </b> {{ rps[rp].time }} <br>
+        <b>Skill Level: </b>    {{ rps[rp].skill }} <br>
+        <b>Description: </b>    {{ rps[rp].description }} 
     </p>
     {% endfor %}
     <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
