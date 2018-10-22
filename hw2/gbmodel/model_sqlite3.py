@@ -10,7 +10,7 @@ ata is stored in a SQLite database that looks something like the following:
 
 This can be created with the following SQL (see bottom of this file):
 
-    create table recipes (name text, email text, signed_on date, message);
+    create table recipes (title text, author text, ingredient text, time text, skill text, description);
 
 """
 from datetime import date
@@ -24,35 +24,38 @@ class model(Model):
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
         try:
-            cursor.execute("select count(rowid) from guestbook")
+            cursor.execute("select count(rowid) from recipes")
         except sqlite3.OperationalError:
-            cursor.execute("create table guestbook (name text, email text, signed_on date, message)")
+            cursor.execute("create table recipes (title text, author text, ingredient text, time text, skill text, description)")
         cursor.close()
 
     def select(self):
         """
         Gets all rows from the database
-        Each row contains: name, email, date, message
+        Each row contains: title, author, ingredient, time, skill, description
         :return: List of lists containing all rows of database
         """
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM guestbook")
+        cursor.execute("SELECT * FROM recipes")
         return cursor.fetchall()
 
-    def insert(self, name, email, message):
+    def insert(self, title, author, ingredient, time, skill, description):
         """
         Inserts entry into database
-        :param name: String
-        :param email: String
-        :param message: String
+        :param title: String
+        :param author: String
+        :param ingredient: String
+        :param time: String
+        :param skill: String
+        :param description: String
         :return: True
         :raises: Database errors on connection and insertion
         """
-        params = {'name':name, 'email':email, 'date':date.today(), 'message':message}
+        params = {'title':title, 'author':author, 'ingredient':ingredient, 'time':time, 'skill':skill, 'description':description}
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("insert into guestbook (name, email, signed_on, message) VALUES (:name, :email, :date, :message)", params)
+        cursor.execute("insert into recipes (title, author, ingredient, time, skill, description) VALUES (:title, :author, :ingredient, :time, :skill, :description)", params)
 
         connection.commit()
         cursor.close()
