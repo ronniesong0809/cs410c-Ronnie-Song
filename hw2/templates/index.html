@@ -3,15 +3,15 @@
     <h2>Recipes Webapp</h2>
 
     <h3>Add a new recipe <a href="{{ url_for('add') }}">here</a></h3>
-    <h3>Entries</h3>
-    {% for entry in entries %}
-        <p class=entry>
-        <b>Title:</b>           {{ entry.title }} <br>
-        <b>Author:</b>          {{ entry.author }} <br>
-        <b>Ingredient List: </b>{{ entry.ingredient }} <br>
-        <b>Amount of Time: </b> {{ entry.time }} <br>
-        <b>Skill Level: </b>    {{ entry.skill }} <br>
-        <b>Description: </b>    {{ entry.description }} </p>
+    <h3>Recipes</h3>
+    {% for rp in rps %}
+        <p class=rp>
+        <b>Title:</b>           {{ rp.title }} <br>
+        <b>Author:</b>          {{ rp.author }} <br>
+        <b>Ingredient List: </b>{{ rp.ingredient }} <br>
+        <b>Amount of Time: </b> {{ rp.time }} <br>
+        <b>Skill Level: </b>    {{ rp.skill }} <br>
+        <b>Description: </b>    {{ rp.description }} </p>
     {% endfor %}
 
 {% endblock %}

@@ -6,19 +6,19 @@ from .Model import Model
 
 class model(Model):
     def __init__(self):
-        self.recipesentries = []
+        self.recipeset = []
 
     def select(self):
         """
-        Returns recipesentries list of lists
-        Each list in recipesentries contains: name, email, date, message
+        Returns recipeset list of lists
+        Each list in recipeset contains: title, author, ingredient, time, skill, description
         :return: List of lists
         """
-        return self.recipesentries
+        return self.recipeset
 
     def insert(self, title, author, ingredient, time, skill, description):
         """
-        Appends a new list of values representing new message into guestentries
+        Appends a new list of values representing new message into recipeset
         :param title: String
         :param author: String
         :param ingredient: String
@@ -28,5 +28,5 @@ class model(Model):
         :return: True
         """
         params = [title, author, ingredient, time, skill, description]
-        self.recipesentries.append(params)
+        self.recipeset.append(params)
         return True

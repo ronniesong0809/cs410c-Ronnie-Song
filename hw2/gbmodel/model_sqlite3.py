@@ -16,7 +16,7 @@ This can be created with the following SQL (see bottom of this file):
 from datetime import date
 from .Model import Model
 import sqlite3
-DB_FILE = 'entries.db'    # file for our Database
+DB_FILE = 'recipes.db'    # file for our Database
 
 class model(Model):
     def __init__(self):
@@ -42,7 +42,7 @@ class model(Model):
 
     def insert(self, title, author, ingredient, time, skill, description):
         """
-        Inserts entry into database
+        Inserts recipe into database
         :param title: String
         :param author: String
         :param ingredient: String
