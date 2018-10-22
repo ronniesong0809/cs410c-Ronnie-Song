@@ -11,14 +11,13 @@ from add import Add
 app = flask.Flask(__name__)
 
 """
-route method of flask with '/add' as the page to list all recipes
+route method of flask with '/' as landing page
 """
 app.add_url_rule('/',
                  view_func=Home.as_view('home'),
                  methods=['GET'])
-
 """
-route method of flask with '/' as landing page
+route method of flask with '/add' as the page to list all recipes
 """
 app.add_url_rule('/index/',
                  view_func=Index.as_view('index'),

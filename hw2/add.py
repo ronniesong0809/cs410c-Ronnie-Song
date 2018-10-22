@@ -1,7 +1,9 @@
+"""
+add a new recipe to dictionary, its not nesscarry for hw2 but i have it anyway
+"""
 from flask import redirect, request, url_for, render_template
 from flask.views import MethodView
 import gbmodel
-
 
 class Add(MethodView):
     def get(self):

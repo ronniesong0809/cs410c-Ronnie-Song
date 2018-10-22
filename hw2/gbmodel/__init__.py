@@ -1,3 +1,4 @@
+""" init model"""
 model_backend = 'pydict'
 #model_backend = 'pylist'
 #model_backend = 'sqlite3'

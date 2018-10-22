@@ -1,3 +1,6 @@
+"""
+Base Model
+"""
 class Model():
     def select(self):
         """
