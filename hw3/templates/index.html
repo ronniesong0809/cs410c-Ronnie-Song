@@ -1,17 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
     <h2>Recipes Webapp</h2>
-
-    <h3>Add a new recipe <a href="{{ url_for('add') }}">here</a></h3>
+    <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
+    
     <h3>Recipes</h3>
     {% for rp in rps %}
-        <p class=rp>
-        <b>Title:</b>           {{ rp.title }} <br>
-        <b>Author:</b>          {{ rp.author }} <br>
-        <b>Ingredient List: </b>{{ rp.ingredient }} <br>
-        <b>Amount of Time: </b> {{ rp.time }} <br>
-        <b>Skill Level: </b>    {{ rp.skill }} <br>
-        <b>Description: </b>    {{ rp.description }} </p>
+    <p class=rp>
+    <table border="1">
+        <tr>
+            <td><b>Title: </b></td>
+            <td>{{ rp.title }}</td>
+        </tr>
+        <tr>
+            <td><b>Author: </b></td>
+            <td>{{ rp.author }}</td>
+        </tr>
+        <tr>
+            <td><b>Ingredient List: </b></td>
+            <td>{{ rp.ingredient }}</td>
+        </tr>
+        <tr>
+            <td><b>Amount of Time: </b></td>
+            <td>{{ rp.time }}</td>
+        </tr>
+        <tr>
+            <td><b>Skill Level: </b></td>
+            <td>{{ rp.skill }}</td>
+        </tr>
+        <tr>
+            <td><b>Description: </b></td>
+            <td>{{ rp.description }}</td>
+        </tr>
+    </table>
+    </p>
     {% endfor %}
+    <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
 
 {% endblock %}
