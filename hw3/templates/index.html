@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h2>Recipes Webapp</h2>
     <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
-    
-    <h3>Recipes</h3>
     <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
     <h5>Remove a exist recipe <a href="{{ url_for('remove') }}">here</a></h5>
+    <h2>Recipes Webapp</h2>
+
     {% for rp in rps %}
     <p class=rp>
     <table border="1">
