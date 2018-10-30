@@ -23,3 +23,13 @@ class Model():
         :raises: Database errors on connection and insertion
         """
         pass
+
+    def remove(self, title):
+        """
+        Removes recipe from database
+        :param title: String
+        :return: True
+        :return: none
+        :raises: Database errors on connection and insertion
+        """
+        pass
