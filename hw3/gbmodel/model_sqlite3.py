@@ -60,3 +60,19 @@ class model(Model):
         connection.commit()
         cursor.close()
         return True
+
+    def remove(self, title):
+        """
+        remove recipe from database
+        :param title: String
+        :return: True
+        :raises: Database errors on connection and insertion
+        """
+        params = {'title':title}
+        connection = sqlite3.connect(DB_FILE)
+        cursor = connection.cursor()
+        cursor.execute("delect from recipes where title = :title", params)
+
+        connection.commit()
+        cursor.close()
+        return True
