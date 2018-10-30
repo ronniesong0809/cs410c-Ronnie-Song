@@ -71,7 +71,7 @@ class model(Model):
         params = {'title':title}
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("delect from recipes where title = :title", params)
+        cursor.execute("delete from recipes where title = :title", params)
 
         connection.commit()
         cursor.close()
