@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
+    <h2>Remove a exist recipe</h2>
+    <form action="{{ url_for('remove') }}" method=post>
+        <p class="heading">Title: <br><input type=text name=title></p>
+	<p><input type=submit value=Remove></p>
+    </form>
+{% endblock %}
