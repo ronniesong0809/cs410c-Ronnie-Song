@@ -31,7 +31,7 @@ app.add_url_rule('/add/',
                  methods=['GET', 'POST'])
 
 """
-route method of flask with '/add' as the page to add recipe
+route method of flask with '/remove' as the page to remove recipe
 """
 app.add_url_rule('/remove/',
                  view_func=Remove.as_view('remove'),

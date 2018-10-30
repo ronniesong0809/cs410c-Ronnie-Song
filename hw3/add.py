@@ -1,5 +1,5 @@
 """
-add a new recipe to dictionary, its not nesscarry for hw2 but i have it anyway
+add a new recipe to sqlite
 """
 from flask import redirect, request, url_for, render_template
 from flask.views import MethodView
