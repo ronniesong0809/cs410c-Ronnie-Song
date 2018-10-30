@@ -6,7 +6,7 @@ from flask.views import MethodView
 from home import Home
 from index import Index
 from add import Add
-
+from remove import Remove
 
 app = flask.Flask(__name__)
 
@@ -28,6 +28,13 @@ route method of flask with '/add' as the page to add recipe
 """
 app.add_url_rule('/add/',
                  view_func=Add.as_view('add'),
+                 methods=['GET', 'POST'])
+
+"""
+route method of flask with '/add' as the page to add recipe
+"""
+app.add_url_rule('/remove/',
+                 view_func=Remove.as_view('remove'),
                  methods=['GET', 'POST'])
 
 if __name__ == '__main__':
