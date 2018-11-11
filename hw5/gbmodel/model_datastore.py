@@ -1,5 +1,4 @@
 from .Model import Model
-from datetime import datetime
 from google.cloud import datastore
 
 def from_datastore(entity):
