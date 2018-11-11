@@ -1,3 +1,6 @@
+"""
+Google Cloud Datastore model
+"""
 from .Model import Model
 from google.cloud import datastore
 
