@@ -11,7 +11,7 @@ class Index(MethodView):
 
         """dictionary of list and sqlite."""
 
-        title = translate(row[0])
+        title = self.translate(row[0])
         
         recipes = [dict(title=row[0], 
                         author=row[1], 
@@ -21,12 +21,14 @@ class Index(MethodView):
                         description=row[5]) for row in model.select()]
         return render_template('index.html', rps=recipes)
 
-    def translate(text):
+    def translate(self,text):
 
         from google.cloud import translate
         translate_Client = translate.Client()
         
-        return translate_client.translate(text,target_language='ch')
+        result = translate_client.translate(text,target_language='ru')
+
+        return result['translatedText']
 
         
 
