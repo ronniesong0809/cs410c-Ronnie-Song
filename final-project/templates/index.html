@@ -3,33 +3,51 @@
     <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
     <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
     <h2>Recipes Webapp</h2>
-
+     
     {% for rp in rps %}
     <p class=rp>
     <table border="1">
         <tr>
             <td><b>Title: </b></td>
             <td>{{ rp.title }}</td>
+            <td>{{ rp.t_title }}</td>
+            <td>{{ rp.t2_title }}</td>
+            <td>{{ rp.t3_title }}</td>
         </tr>
         <tr>
             <td><b>Author: </b></td>
             <td>{{ rp.author }}</td>
+            <td>{{ rp.t_author }}</td>
+            <td>{{ rp.t2_author }}</td>
+            <td>{{ rp.t3_author }}</td>
         </tr>
         <tr>
             <td><b>Ingredient List: </b></td>
             <td>{{ rp.ingredient }}</td>
+            <td>{{ rp.t_ingredient }}</td>
+            <td>{{ rp.t2_ingredient }}</td>
+            <td>{{ rp.t3_ingredient }}</td>
         </tr>
         <tr>
             <td><b>Amount of Time: </b></td>
             <td>{{ rp.time }}</td>
+            <td>{{ rp.t_time }}</td>
+            <td>{{ rp.t2_time }}</td>
+            <td>{{ rp.t3_time }}</td>
         </tr>
         <tr>
             <td><b>Skill Level: </b></td>
             <td>{{ rp.skill }}</td>
+            <td>{{ rp.t_skill }}</td>
+            <td>{{ rp.t2_skill }}</td>
+            <td>{{ rp.t3_skill }}</td>
         </tr>
         <tr>
             <td><b>Description: </b></td>
             <td>{{ rp.description }}</td>
+            <td>{{ rp.t_description }}</td>
+            <td>{{ rp.t2_description }}</td>
+            <td>{{ rp.t3_description }}</td>
         </tr>
     </table>
     </p>
