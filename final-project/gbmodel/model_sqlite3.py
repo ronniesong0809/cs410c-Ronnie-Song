@@ -26,7 +26,7 @@ class model(Model):
         try:
             cursor.execute("select count(rowid) from recipes")
         except sqlite3.OperationalError:
-            cursor.execute("create table recipes (title text, author text, ingredient text, time text, skill text, description)")
+            cursor.execute("create table recipes (title text, author text, ingredient text, time text, skill text, description, url text)")
         cursor.close()
 
     def select(self):
@@ -40,7 +40,7 @@ class model(Model):
         cursor.execute("SELECT * FROM recipes")
         return cursor.fetchall()
 
-    def insert(self, title, author, ingredient, time, skill, description):
+    def insert(self, title, author, ingredient, time, skill, description, url):
         """
         Inserts recipe into database
         :param title: String
@@ -49,13 +49,14 @@ class model(Model):
         :param time: String
         :param skill: String
         :param description: String
+        :param url: String
         :return: True
         :raises: Database errors on connection and insertion
         """
-        params = {'title':title, 'author':author, 'ingredient':ingredient, 'time':time, 'skill':skill, 'description':description}
+        params = {'title':title, 'author':author, 'ingredient':ingredient, 'time':time, 'skill':skill, 'description':description, 'url':url}
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("insert into recipes (title, author, ingredient, time, skill, description) VALUES (:title, :author, :ingredient, :time, :skill, :description)", params)
+        cursor.execute("insert into recipes (title, author, ingredient, time, skill, description, url) VALUES (:title, :author, :ingredient, :time, :skill, :description, :url)", params)
 
         connection.commit()
         cursor.close()

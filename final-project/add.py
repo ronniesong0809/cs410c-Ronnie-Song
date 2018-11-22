@@ -20,5 +20,6 @@ class Add(MethodView):
                      request.form['ingredient'],
                      request.form['time'],
                      request.form['skill'],
-                     request.form['description'])
+                     request.form['description'],
+                     request.form['url'])
         return redirect(url_for('index'))

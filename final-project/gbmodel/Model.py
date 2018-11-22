@@ -9,7 +9,7 @@ class Model():
         """
         pass
 
-    def insert(self, title, author, ingredient, time, skill, description):
+    def insert(self, title, author, ingredient, time, skill, description, url):
         """
         Inserts recipe into database
         :param title: String
@@ -18,6 +18,7 @@ class Model():
         :param time: String
         :param skill: String
         :param description: String
+        :param url: String
         :return: True
         :return: none
         :raises: Database errors on connection and insertion

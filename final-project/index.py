@@ -20,6 +20,7 @@ class Index(MethodView):
                         time=row[3], 
                         skill=row[4], 
                         description=row[5],
+                        url=row[6],
                         t_title=self.translate(row[0],lang1),
                         t_author=self.translate(row[1],lang1),
                         t_ingredient=self.translate(row[2],lang1),
