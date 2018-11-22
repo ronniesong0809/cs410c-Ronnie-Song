@@ -2,10 +2,27 @@
 {% block content %}
     <h1>Recipes Webapp</h1>
 
-    
+    <div id="content">
     <h3>Welcome to my Recipes webapp</h3><hr>
     
-    <h5>View all recipes <a href="{{ url_for('index') }}">here</a></h5>
+    <h5>View all recipes <a href="{{ url_for('index') }}" onclick="myFunction();">here</a></h5>
     <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
+
+    </div>
+
+    <div id="myDIV" style="display: none;"><img src="/static/loading.gif">Loading!</div>
+
+    <script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        var y = document.getElementById("content");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
 
 {% endblock %}

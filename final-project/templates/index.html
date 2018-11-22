@@ -1,13 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
+    <h1>Recipes Webapp</h1>
     <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
     <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
-    <h2>Recipes Webapp</h2>
      
     {% for rp in rps %}
     <p class=rp>
+    <div class="card">
+    <div class="container">
     <table border="1" style="width=100%">
         <tr>
+            <td><b>Elements</b></td>
+	    <td><b>Original Text</b></td>
+            <td><b>Language 1</b></td>
+            <td><b>Language 2</b></td>
+            <td><b>Language 3</b></td>
+        </tr>
+	<tr>
             <td><b>Title: </b></td>
             <td>{{ rp.title }}</td>
             <td>{{ rp.t_title }}</td>
@@ -50,6 +59,8 @@
             <td>{{ rp.t3_description }}</td>
         </tr>
     </table>
+    </div>
+    </div>
     </p>
     {% endfor %}
 
