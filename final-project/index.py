@@ -21,6 +21,7 @@ class Index(MethodView):
                         skill=row[4], 
                         description=row[5],
                         url=row[6],
+                        url_description=self.detect_labels_uri(row[6]),
                         t_title=self.translate(row[0],lang1),
                         t_author=self.translate(row[1],lang1),
                         t_ingredient=self.translate(row[2],lang1),
@@ -51,6 +52,20 @@ class Index(MethodView):
 
         return result['translatedText']
 
-        
+    def detect_labels_uri(self,uri):
 
+        from google.cloud import vision
+        client = vision.ImageAnnotatorClient()
+
+        image = vision.types.Image()
+        image.source.image_uri = uri
+
+        response = client.label_detection(image=image)
+        labels = response.label_annotations
+
+        label_descriptions=[]
+        for label in labels:
+            label_descriptions.append(label.description)
+
+        return label_descriptions
 
