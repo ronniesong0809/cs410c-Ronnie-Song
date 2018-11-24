@@ -1,10 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
-    <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
-    <h5>Remove an exist recipe <a href="{{ url_for('remove') }}">here</a></h5>
+    <div style="text-align: center;">
+
+    <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
+    <button><a href="{{ url_for('add') }}" style="text-decoration: none">Add a new recipe</a></button>
+    <button><a href="{{ url_for('remove') }}" style="text-decoration: none">Remove an exist recipe</a></button>
+    </div>
      
+    <div id="content">
     {% for rp in rps %}
     <p class=rp>
     <div class="card">
@@ -65,6 +69,7 @@
             <td>{{ rp.t3_description }}</td>
         </tr>
     </table>
+    </div>
     </div>
     </div>
     </p>

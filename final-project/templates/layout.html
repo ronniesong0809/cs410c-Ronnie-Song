@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
 <title>Final Project Recipes Webapp</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheet1.css') }}">
 <div class=page>
-    <h1 align="center">Recipes Webapp</h1>
+	<div style="background-color: #f2f2f2">
+    <h1 style="font-variant: small-caps" align="center">Recipes Webapp</h1>
+	</div>
 
     {% block content %}{% endblock %}
     

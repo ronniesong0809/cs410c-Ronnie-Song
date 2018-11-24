@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
     
+    <div style="text-align: center;">
     <h3>Add new recipe</h3>
     
-    <div id="content">
-    <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
+    <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
+    </div>
 
+    <div id="content">
     <form action="{{ url_for('add') }}" method=post>
         <p class="heading">Title: <br><input type=text name=title></p>
         <p class="heading">Author: <br><input type=text name=author></p>
@@ -20,7 +22,7 @@
  
     <div id="myDIV" style="display: none; text-align: center">
         <img src="/static/loading.gif">
-	<h3>Loading...</h3>
+	<h3>Redirecting to recipes list...</h3>
     </div>
 
     <script>

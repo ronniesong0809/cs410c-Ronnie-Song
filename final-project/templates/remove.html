@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
 
+    <div style="text-align: center;">
     <h3>Remove an exist recipe</h3>
     
-    <div id="content">
-    <h5>Go back to home <a href="{{ url_for('home') }}">here</a></h5>
-    <h5>Go back to view all recipes <a href="{{ url_for('index') }}">here</a></h5>
+    <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
+    </div>
 
+    <div id="content">
     <form action="{{ url_for('remove') }}" method=post>
         <p class="heading">Remove by title: <input type=text name=title></p>
 	<p><input type=submit value=Remove onclick="myFunction();"></p>
@@ -15,7 +16,7 @@
 
     <div id="myDIV" style="display: none; text-align: center">
         <img src="/static/loading.gif">
-	<h3>Redirect to recipes list...</h3>
+	<h3>Redirecting to recipes list...</h3>
     </div>
 
     <script>

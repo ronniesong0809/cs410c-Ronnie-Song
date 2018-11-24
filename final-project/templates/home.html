@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <h3>Welcome to my Recipes webapp</h3>
-
+    <div style="text-align: center;">
     <div id="content">
-    
-    <h5>View all recipes <a href="{{ url_for('index') }}" onclick="myFunction();">here</a></h5>
-    <h5>Add a new recipe <a href="{{ url_for('add') }}">here</a></h5>
-    <h5>Remove an exist recipe <a href="{{ url_for('remove') }}">here</a></h5>
-
+    <img src="/static/homepage.jpg" style="width:50%;">
+    <h3>Welcome to Ronnie's recipes webapp</h3>
+    <button><a href="{{ url_for('index') }}" onclick="myFunction();" style="text-decoration: none">View all recipe</a></button>
+    <button><a href="{{ url_for('add') }}" style="text-decoration: none">Add a new recipe</a></button>
+    <button><a href="{{ url_for('remove') }}" style="text-decoration: none">Remove an exist recipe</a></button>
+    </div>
     </div>
 
     <div id="myDIV" style="display: none; text-align: center">
