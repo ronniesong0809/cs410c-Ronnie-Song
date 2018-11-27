@@ -8,6 +8,7 @@ import gbmodel
 class Index(MethodView):
     def get(self):
         model = gbmodel.get_model()
+        self.nutrutuonix()
 
         """dictionary of list and sqlite."""
         lang1='zh'
@@ -69,3 +70,8 @@ class Index(MethodView):
 
         return label_descriptions
 
+    def nutrutuonix(self):
+        from nutritionix import Nutritionix
+        nix = Nutritionix(app_id="8a719e54", api_key="d530d0e7c2e68deffe4b5c625100ea99")
+        results = nix.search("1 pound steak, 50g salt").json()
+        print(results)

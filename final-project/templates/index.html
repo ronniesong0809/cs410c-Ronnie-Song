@@ -1,79 +1,138 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <div style="text-align: center;">
+<div style="text-align: center;">
 
     <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
     <button><a href="{{ url_for('add') }}" style="text-decoration: none">Add a new recipe</a></button>
     <button><a href="{{ url_for('remove') }}" style="text-decoration: none">Remove an exist recipe</a></button>
-    </div>
-     
-    <div id="content">
+    <button><a onclick="myFunction();" style="text-decoration: none">Translate to other language</a></button>
+</div>
+
+<div id="content">
     {% for rp in rps %}
     <p class=rp>
-    <div class="card">
+        <div class="card">
 
-        <div style="text-align: center;">
-	    <img src="{{ rp.url }}" alt="Avatar" style="width:50%;" align="middle">
-	    <p>Labels: {{ rp.url_description }}</p>
+            <div style="text-align: center;">
+                <img src="{{ rp.url }}" alt="Avatar" style="width:50%;" align="middle">
+                <p>Labels: {{ rp.url_description }}</p>
+            </div>
+
+            <div class="container">
+                <table>
+                    <tr>
+                        <th style="width:10%"><b>Elements</b></td>
+                        <th style="width:22.5%"><b>Original Text</b></td>
+                        <th style="width:22.5%"><b>Language 1</b></td>
+                        <th style="width:22.5%"><b>Language 2</b></td>
+                        <th style="width:22.5%"><b>Language 3</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Title: </b></td>
+                        <td>{{ rp.title }}</td>
+                        <td>{{ rp.t_title }}</td>
+                        <td>{{ rp.t2_title }}</td>
+                        <td>{{ rp.t3_title }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Author: </b></td>
+                        <td>{{ rp.author }}</td>
+                        <td>{{ rp.t_author }}</td>
+                        <td>{{ rp.t2_author }}</td>
+                        <td>{{ rp.t3_author }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ingredient List: </b></td>
+                        <td>{{ rp.ingredient }}</td>
+                        <td>{{ rp.t_ingredient }}</td>
+                        <td>{{ rp.t2_ingredient }}</td>
+                        <td>{{ rp.t3_ingredient }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Amount of Time: </b></td>
+                        <td>{{ rp.time }}</td>
+                        <td>{{ rp.t_time }}</td>
+                        <td>{{ rp.t2_time }}</td>
+                        <td>{{ rp.t3_time }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Skill Level: </b></td>
+                        <td>{{ rp.skill }}</td>
+                        <td>{{ rp.t_skill }}</td>
+                        <td>{{ rp.t2_skill }}</td>
+                        <td>{{ rp.t3_skill }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Description: </b></td>
+                        <td>{{ rp.description }}</td>
+                        <td>{{ rp.t_description }}</td>
+                        <td>{{ rp.t2_description }}</td>
+                        <td>{{ rp.t3_description }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
+</div>
+</p>
 
-    <div class="container">
-    <table>
-        <tr>
-            <th style="width:10%"><b>Elements</b></td>
-	    <th style="width:22.5%"><b>Original Text</b></td>
-            <th style="width:22.5%"><b>Language 1</b></td>
-            <th style="width:22.5%"><b>Language 2</b></td>
-            <th style="width:22.5%"><b>Language 3</b></td>
-        </tr>
-	<tr>
-            <td><b>Title: </b></td>
-            <td>{{ rp.title }}</td>
-            <td>{{ rp.t_title }}</td>
-            <td>{{ rp.t2_title }}</td>
-            <td>{{ rp.t3_title }}</td>
-        </tr>
-        <tr>
-            <td><b>Author: </b></td>
-            <td>{{ rp.author }}</td>
-            <td>{{ rp.t_author }}</td>
-            <td>{{ rp.t2_author }}</td>
-            <td>{{ rp.t3_author }}</td>
-        </tr>
-        <tr>
-            <td><b>Ingredient List: </b></td>
-            <td>{{ rp.ingredient }}</td>
-            <td>{{ rp.t_ingredient }}</td>
-            <td>{{ rp.t2_ingredient }}</td>
-            <td>{{ rp.t3_ingredient }}</td>
-        </tr>
-        <tr>
-            <td><b>Amount of Time: </b></td>
-            <td>{{ rp.time }}</td>
-            <td>{{ rp.t_time }}</td>
-            <td>{{ rp.t2_time }}</td>
-            <td>{{ rp.t3_time }}</td>
-        </tr>
-        <tr>
-            <td><b>Skill Level: </b></td>
-            <td>{{ rp.skill }}</td>
-            <td>{{ rp.t_skill }}</td>
-            <td>{{ rp.t2_skill }}</td>
-            <td>{{ rp.t3_skill }}</td>
-        </tr>
-        <tr>
-            <td><b>Description: </b></td>
-            <td>{{ rp.description }}</td>
-            <td>{{ rp.t_description }}</td>
-            <td>{{ rp.t2_description }}</td>
-            <td>{{ rp.t3_description }}</td>
-        </tr>
-    </table>
-    </div>
-    </div>
-    </div>
-    </p>
-    {% endfor %}
+{% endfor %}
 
+</div>
+<div id="myDIV">
+    {% for rp in rps %}
+    <p class=rp>
+        <div class="card">
+            <div style="text-align: center;">
+                <img src="{{ rp.url }}" alt="Avatar" style="width:50%;" align="middle">
+                <p>Labels: {{ rp.url_description }}</p>
+            </div>
+            <div class="container">
+                <table>
+                    <tr>
+                        <th><b>Elements</b></td>
+                        <th><b>Original Text</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Title: </b></td>
+                        <td>{{ rp.title }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Author: </b></td>
+                        <td>{{ rp.author }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ingredient List: </b></td>
+                        <td>{{ rp.ingredient }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Amount of Time: </b></td>
+                        <td>{{ rp.time }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Skill Level: </b></td>
+                        <td>{{ rp.skill }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Description: </b></td>
+                        <td>{{ rp.description }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        var y = document.getElementById("content");
+        if (x.style.display === "none") {
+            x.style.display = "none";
+            y.style.display = "block";
+        } else {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+    }
+</script>
 {% endblock %}
