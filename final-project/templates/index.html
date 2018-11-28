@@ -9,7 +9,7 @@
     <button><a onclick="myFunction();" style="text-decoration: none">Translate to other language</a></button>
 </div>
 
-<div id="content">
+<div id="complex" style="display: none">
     {% for rp in rps %}
     <p class=rp>
         <div class="card">
@@ -73,20 +73,21 @@
                 </table>
             </div>
         </div>
-</div>
-</p>
+    </p>
 
-{% endfor %}
-
+    {% endfor %}
 </div>
-<div id="myDIV">
+
+<div id="simple">
     {% for rp in rps %}
     <p class=rp>
         <div class="card">
+
             <div style="text-align: center;">
                 <img src="{{ rp.url }}" alt="Avatar" style="width:50%;" align="middle">
                 <p>Labels: {{ rp.url_description }}</p>
             </div>
+
             <div class="container">
                 <table>
                     <tr>
@@ -120,19 +121,50 @@
                 </table>
             </div>
         </div>
-        {% endfor %}
+    </p>
+    {% endfor %}
 </div>
+
+<div id="nutritionix">
+    <br>
+    <h2>Nutrients:</h2>
+    <table width="60%">
+        <tr>
+            <th></th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Food</th>
+            <th>Calories</th>
+            <th>Weight</th>
+        </tr>
+    </table>
+    <script>
+        var obj = {{rp.nutrition | tojson}};
+        var x = '';
+        for (var i in obj.foods) {
+            x += "<tr><td><img src='" + obj.foods[i].photo.thumb + "'></td>" +
+                "<td>" + obj.foods[i].serving_qty + "</td>" +
+                "<td>" + obj.foods[i].serving_unit + "</td>" +
+                "<td>" + obj.foods[i].food_name + "</td>" +
+                "<td>" + obj.foods[i].nf_calories + " kcal</td>" +
+                "<td>" + obj.foods[i].serving_weight_grams + " g</td></tr>";
+        }
+        document.getElementById("table").innerHTML = x;
+    </script>
+</div>
+
 <script>
     function myFunction() {
-        var x = document.getElementById("myDIV");
-        var y = document.getElementById("content");
+        var x = document.getElementById("complex");
+        var y = document.getElementById("simple");
         if (x.style.display === "none") {
-            x.style.display = "none";
-            y.style.display = "block";
-        } else {
             x.style.display = "block";
             y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
         }
     }
 </script>
+
 {% endblock %}
