@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-    
-    <div style="text-align: center;">
-    <h3>Add new recipe</h3>
-    
-    <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
-    </div>
 
-    <div id="content">
+<div style="text-align: center;">
+    <h3>Add new recipe</h3>
+
+    <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
+</div>
+
+<div id="content">
     <form action="{{ url_for('add') }}" method=post>
         <p class="heading">Title: <br><input type=text name=title></p>
         <p class="heading">Author: <br><input type=text name=author></p>
@@ -16,18 +16,18 @@
         <p class="heading">Amount of Time: <br><input type=text name=time></p>
         <p class="heading">Skill Level: <br><input type=text name=skill></p>
         <p class="heading">Description: <textarea rows=5 cols=50 name=description></textarea></p>
-	<p><input type=submit value=Add onclick="myFunction();"></p>
-    </form> 
-    </div>
- 
-    <div id="myDIV" style="display: none; text-align: center">
-        <img src="/static/loading.gif">
-	<h3>Redirecting to recipes list...</h3>
-    </div>
+        <p><input type=submit value=Add onclick="myFunction();"></p>
+    </form>
+</div>
 
-    <script>
+<div id="loading" style="display: none; text-align: center">
+    <img src="/static/loading.gif">
+    <h3>Redirecting to recipes list...</h3>
+</div>
+
+<script>
     function myFunction() {
-        var x = document.getElementById("myDIV");
+        var x = document.getElementById("loading");
         var y = document.getElementById("content");
         if (x.style.display === "none") {
             x.style.display = "block";
@@ -36,6 +36,6 @@
             x.style.display = "none";
         }
     }
-    </script>
+</script>
 
 {% endblock %}

@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <div style="text-align: center;">
+<div style="text-align: center;">
     <div id="content">
-    <img src="/static/homepage.jpg" style="width:50%;">
-    <h3>Welcome to Ronnie's recipes webapp</h3>
-    <button><a href="{{ url_for('index') }}" onclick="myFunction();" style="text-decoration: none">View all recipe</a></button>
-    <button><a href="{{ url_for('add') }}" style="text-decoration: none">Add a new recipe</a></button>
-    <button><a href="{{ url_for('remove') }}" style="text-decoration: none">Remove an exist recipe</a></button>
+        <img src="/static/homepage.jpg" style="width:50%;">
+        <h3>Welcome to Ronnie's recipes webapp</h3>
+        <button><a href="{{ url_for('index') }}" onclick="myFunction();" style="text-decoration: none">View all recipe</a></button>
+        <button><a href="{{ url_for('add') }}" style="text-decoration: none">Add a new recipe</a></button>
+        <button><a href="{{ url_for('remove') }}" style="text-decoration: none">Remove an exist recipe</a></button>
     </div>
-    </div>
+</div>
 
-    <div id="myDIV" style="display: none; text-align: center">
-        <img src="/static/loading.gif">
-	<h3>Loading...</h3>
-    </div>
+<div id="loading" style="display: none; text-align: center">
+    <img src="/static/loading.gif">
+    <h3>Loading... getting ML Api...</h3>
+</div>
 
-    <script>
+<script>
     function myFunction() {
-        var x = document.getElementById("myDIV");
+        var x = document.getElementById("loading");
         var y = document.getElementById("content");
         if (x.style.display === "none") {
             x.style.display = "block";
@@ -27,6 +27,6 @@
             x.style.display = "none";
         }
     }
-    </script>
+</script>
 
 {% endblock %}

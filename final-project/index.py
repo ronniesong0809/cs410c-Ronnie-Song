@@ -8,7 +8,8 @@ import gbmodel
 class Index(MethodView):
     def get(self):
         model = gbmodel.get_model()
-        self.nutrutuonix()
+        result = self.nutrutuonix()
+        print(result)
 
         """dictionary of list and sqlite."""
         lang1='zh'
