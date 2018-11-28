@@ -3,6 +3,7 @@ route method of flask with '/add' as the page to list all recipes
 """
 from flask import render_template
 from flask.views import MethodView
+import requests
 import gbmodel
 
 class Index(MethodView):
@@ -71,8 +72,9 @@ class Index(MethodView):
 
         return label_descriptions
 
-    def nutrutuonix(self):
-        from nutritionix import Nutritionix
-        nix = Nutritionix(app_id="8a719e54", api_key="d530d0e7c2e68deffe4b5c625100ea99")
-        results = nix.search("1 pound steak, 50g salt").json()
-        print(results)
+    def nutritionix(self, ingredient):
+        url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
+        headers = {"Content-Type":"application/json", "x-app-id":"8a719e54", "x-app-key":"d530d0e7c2e68deffe4b5c625100ea99"}
+        body = {"query":ingredient,"timezone": "US/Eastern"}
+        response = requests.post(url, headers= headers, json = body)
+        return response.json()
