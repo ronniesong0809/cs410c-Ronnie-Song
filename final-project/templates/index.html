@@ -137,20 +137,17 @@
             <th>Calories</th>
             <th>Weight</th>
         </tr>
+        {% for obj in rp.nutrition.foods %}
+        <tr>
+            <td style="text-align: center;"><img src='{{obj.photo.thumb}}' alt='{{obj.photo.food_name}}'></td>
+            <td> {{obj.serving_qty}} </td>
+            <td> {{obj.serving_unit}} </td>
+            <td> {{obj.food_name}} </td>
+            <td> {{obj.nf_calories}} kcal</td>
+            <td> {{obj.serving_weight_grams}} g</td>
+        </tr>
+        {% endfor %}
     </table>
-    <script>
-        var obj = {{rp.nutrition | tojson}};
-        var x = '';
-        for (var i in obj.foods) {
-            x += "<tr><td><img src='" + obj.foods[i].photo.thumb + "'></td>" +
-                "<td>" + obj.foods[i].serving_qty + "</td>" +
-                "<td>" + obj.foods[i].serving_unit + "</td>" +
-                "<td>" + obj.foods[i].food_name + "</td>" +
-                "<td>" + obj.foods[i].nf_calories + " kcal</td>" +
-                "<td>" + obj.foods[i].serving_weight_grams + " g</td></tr>";
-        }
-        document.getElementById("table").innerHTML = x;
-    </script>
 </div>
 
 <script>
