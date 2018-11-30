@@ -149,7 +149,82 @@
         {% endfor %}
     </table>
 </div>
+<div id="yelp">
+    <br>
+    <h2>Yelp</h2>
+    <h6>If you don't want to make it yourself, you can try this recipe at the following restaurants:</h6>
 
+    {% for obj in rp.yelp.businesses %}
+    <table width="60%">
+        <!--<td style="width:50%;text-align: center;">
+            Name: {{ rp.yelp.businesses[0].name }}
+            <img src="{{ rp.yelp.businesses[0].image_url }}" alt="Avatar" style="width:80%;">
+        </td>
+        <td style="width:50%">
+            <table>
+                <tr>
+                    <td>Reviews: </td>
+                    <td> {{ rp.yelp.businesses[0].review_count }} </td>
+                </tr>
+                <tr>
+                    <td>Rating: </td>
+                    <td> {{ rp.yelp.businesses[0].rating }} stars</td>
+                </tr>
+                <tr>
+                    <td>Categories: </td>
+                    <td> {{ rp.yelp.businesses[0].categories }} </td>
+                </tr>
+                <tr>
+                    <td>Location: </td>
+                    <td> {{ rp.yelp.businesses[0].location.address1 }} {{ rp.yelp.businesses[0].location.city }} {{ rp.yelp.businesses[0].location.state }} {{ rp.yelp.businesses[0].location.zip_code }}</td>
+                </tr>
+                <tr>
+                    <td>Price: </td>
+                    <td> {{ rp.yelp.businesses[0].price }}</td>
+                </tr>
+                <tr>
+                    <td>More info</td>
+                    <td> <a href="{{ rp.yelp.businesses[0].url }}">Here</a></td>
+                </tr>
+            </table>
+        </td>-->
+        <td style="width:50%;text-align: center;">
+            <h3><b> {{ obj.name }} </b></h3>
+            <h5> {{ obj.rating }} stars from {{ obj.review_count }} reviews</h5>
+            <img src="{{ obj.image_url }}" alt="Avatar" style="height:20%">
+        </td>
+        <td style="width:50%">
+            <table>
+                <tr>
+                    <td> Price: </td>
+                    <td> {{ obj.price }} </td>
+                </tr>
+                <tr>
+                    <td> Categories: </td>
+                    <td>
+                        {% for x in obj.categories %}
+                        {{ x.title }},
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td> Location: </td>
+                    <td> {{ obj.location.address1 }} {{ obj.location.city }} {{ obj.location.state }}, {{
+                        obj.location.zip_code }}</td>
+                </tr>
+                <tr>
+                    <td> Phone: </td>
+                    <td> {{ obj.phone }}</td>
+                </tr>
+                <tr>
+                    <td>More:</td>
+                    <td> <a href="{{ obj.url }}">Here</a></td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    {% endfor %}
+</div>
 <script>
     function myFunction() {
         var x = document.getElementById("complex");

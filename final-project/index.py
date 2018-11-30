@@ -42,7 +42,7 @@ class Index(MethodView):
                         t3_skill=self.translate(row[4],lang3),
                         t3_description=self.translate(row[5],lang3),
                         nutrition = self.nutritionix(row[2]),
-                        yelp = self.yelp(row[0])) for row in model.select()]
+                        yelp = self.yelpSearch(row[0])) for row in model.select()]
 
         return render_template('index.html', rps=recipes)
 
