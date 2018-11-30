@@ -41,7 +41,8 @@ class Index(MethodView):
                         t3_time=self.translate(row[3],lang3),
                         t3_skill=self.translate(row[4],lang3),
                         t3_description=self.translate(row[5],lang3),
-                        nutrition = self.nutritionix(row[2])) for row in model.select()]
+                        nutrition = self.nutritionix(row[2]),
+                        yelp = self.yelp(row[0])) for row in model.select()]
 
         return render_template('index.html', rps=recipes)
 
@@ -76,4 +77,10 @@ class Index(MethodView):
         headers = {"Content-Type":"application/json", "x-app-id":"8a719e54", "x-app-key":"d530d0e7c2e68deffe4b5c625100ea99"}
         body = {"query":ingredient,"timezone": "US/Eastern"}
         response = requests.post(url, headers= headers, json = body)
+        return response.json()
+
+    def yelpSearch(self, title):
+        url = 'https://api.yelp.com/v3/businesses/search?term=' + title + '&location=portland&limit=3'
+        headers={'Authorization': "Bearer T7zsAtPs89Md-UJVSSUpzGGPxljUmlU914d994tSlhL5v98RnTEmDvPEfHgwwNp5FooWOpWp45ciFSX2ON8HnDFRbojwEBMbyW1SslpL9VcL3o2gAwvLTXFBW-7rW3Yx"}
+        response = requests.get(url, headers=headers)
         return response.json()
