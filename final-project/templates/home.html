@@ -1,32 +1,42 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 
 <div style="text-align: center;">
-    <div id="content">
-        <img src="/static/homepage.jpg" style="width:50%;">
-        <h3>Welcome to Ronnie's recipes webapp</h3>
-        <button><a href="{{ url_for('index') }}" onclick="myFunction();" style="text-decoration: none">View all recipe</a></button>
-        <button><a href="{{ url_for('add') }}" style="text-decoration: none">Add a new recipe</a></button>
-        <button><a href="{{ url_for('remove') }}" style="text-decoration: none">Remove an exist recipe</a></button>
-    </div>
+	<div id="content">
+		<img src="/static/homepage.jpg" style="width:50%;">
+		<h3>Welcome to Ronnie's recipes webapp</h3>
+
+		<form style="display: inline" action="{{ url_for('index') }}" method="get">
+			<button onclick="myFunction();" style="text-decoration: none">View all recipe</button>
+		</form>
+
+		<form style="display: inline" action="{{ url_for('add') }}" method="get">
+			<button onclick="myFunction();" style="text-decoration: none">Add a new recipe</button>
+		</form>
+
+		<form style="display: inline" action="{{ url_for('remove') }}" method="get">
+			<button onclick="myFunction();" style="text-decoration: none">Remove an exist recipe</button>
+		</form>
+
+	</div>
 </div>
 
 <div id="loading" style="display: none; text-align: center">
-    <img src="/static/loading.gif">
-    <h3>Loading... getting ML Api...</h3>
+	<img src="/static/loading.gif">
+	<h3>Loading... </h3>
+	<h3>Multiple requests to the APIs takes 20~30 seconds to complete...</h3>
 </div>
 
 <script>
-    function myFunction() {
-        var x = document.getElementById("loading");
-        var y = document.getElementById("content");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            y.style.display = "none";
-        } else {
-            x.style.display = "none";
-        }
-    }
+	function myFunction() {
+		var x = document.getElementById("loading");
+		var y = document.getElementById("content");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+			y.style.display = "none";
+		} else {
+			x.style.display = "none";
+		}
+	}
 </script>
 
 {% endblock %}

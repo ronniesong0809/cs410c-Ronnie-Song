@@ -4,7 +4,9 @@
 <div style="text-align: center;">
     <h3>Remove an exist recipe</h3>
 
-    <button><a href="{{ url_for('home') }}" style="text-decoration: none">Go back to home</a></button>
+    <form style="display: inline" action="{{ url_for('home') }}" method="get">
+      <button onclick="myFunction();" style="text-decoration: none">Go back to home</button>
+    </form>
 </div>
 
 <div id="content">
