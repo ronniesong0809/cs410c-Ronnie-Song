@@ -3,6 +3,8 @@ route method of flask with '/add' as the page to list all recipes
 """
 from flask import render_template
 from flask.views import MethodView
+from google.cloud import translate
+from google.cloud import vision
 import requests
 import gbmodel
 
@@ -13,7 +15,6 @@ class Index(MethodView):
         """dictionary of list and sqlite."""
         lang1='zh'
         lang2='ru'
-        lang3='ja'
 
         recipes = [dict(title=row[0],
                         author=row[1], 
@@ -35,12 +36,6 @@ class Index(MethodView):
                         t2_time=self.translate(row[3],lang2),
                         t2_skill=self.translate(row[4],lang2),
                         t2_description=self.translate(row[5],lang2),
-                        t3_title=self.translate(row[0],lang3),
-                        t3_author=self.translate(row[1],lang3),
-                        t3_ingredient=self.translate(row[2],lang3),
-                        t3_time=self.translate(row[3],lang3),
-                        t3_skill=self.translate(row[4],lang3),
-                        t3_description=self.translate(row[5],lang3),
                         nutrition = self.nutritionix(row[2]),
                         yelp = self.yelpSearch(row[0])) for row in model.select()]
 
@@ -48,7 +43,6 @@ class Index(MethodView):
 
     def translate(self,text,target):
 
-        from google.cloud import translate
         translate_client = translate.Client()
         
         result = translate_client.translate(text,target_language=target)
@@ -56,8 +50,7 @@ class Index(MethodView):
         return result['translatedText']
 
     def detect_labels_uri(self,uri):
-
-        from google.cloud import vision
+        
         client = vision.ImageAnnotatorClient()
 
         image = vision.types.Image()
