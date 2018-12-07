@@ -5,5 +5,6 @@ Take hw4 recipes web application and adapt it to be a front-end that utilizes Ma
 ### APIs:
 - Vision
 - Translate
-
+- Nutritionix
+- Yelp
 

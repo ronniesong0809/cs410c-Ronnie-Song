@@ -41,13 +41,15 @@ class Index(MethodView):
 
         return render_template('index.html', rps=recipes)
 
+    # google cloud translate api
     def translate(self,text,target):        
         translate_client = translate.Client()
         
         result = translate_client.translate(text,target_language=target)
 
         return result['translatedText']
-
+    
+    # google cloud translate api
     def detect_labels_uri(self,uri):
     
         if not uri:
@@ -68,15 +70,33 @@ class Index(MethodView):
 
             return label_descriptions
     
+    # nutritionix api
     def nutritionix(self, ingredient):
+        # url
         url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
-        headers = {"Content-Type":"application/json", "x-app-id":"8a719e54", "x-app-key":"d530d0e7c2e68deffe4b5c625100ea99"}
+        
+        # header
+        headers = {"Content-Type":"application/json", "x-app-id":"ec32a59d", "x-app-key":"d13ec612386c8937ed513fc295ad10e3"}
+        
+        # body
         body = {"query":ingredient,"timezone": "US/Eastern"}
+        
+        # response object
         response = requests.post(url, headers= headers, json = body)
+        
+        # returns a promise that resolves with the result of parsing the body text as json 
         return response.json()
-
+    
+    # yelp api
     def yelpSearch(self, title):
+        # url 
         url = 'https://api.yelp.com/v3/businesses/search?term=' + title + '&location=portland&limit=3'
+        
+        # header 
         headers={'Authorization': "Bearer T7zsAtPs89Md-UJVSSUpzGGPxljUmlU914d994tSlhL5v98RnTEmDvPEfHgwwNp5FooWOpWp45ciFSX2ON8HnDFRbojwEBMbyW1SslpL9VcL3o2gAwvLTXFBW-7rW3Yx"}
+        
+        # response object
         response = requests.get(url, headers=headers)
+        
+        # returns a promise that resolves with the result of parsing the body text as json 
         return response.json()
