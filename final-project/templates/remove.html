@@ -4,20 +4,19 @@
 <div style="text-align: center;">
     <h3>Remove an exist recipe</h3>
 
-    <form style="display: inline" action="{{ url_for('home') }}" method="get">
-      <button onclick="myFunction();" style="text-decoration: none">Go back to home</button>
-    </form>
+    <a class="btn btn-primary" href="{{ url_for('home') }}" role="button" onclick="myFunction();" >Go back to home</a>
+    <br><br>
 </div>
 
-<div id="content">
+<div id="content" style="width:20%;margin:0 auto;">
     <form action="{{ url_for('remove') }}" method=post>
         <p class="heading">Remove by title: <input type=text name=title></p>
-        <p><input type=submit value=Remove onclick="myFunction();"></p>
+        <input class="btn btn-primary" type="submit" value="Remove" onclick="myFunction();">
     </form>
 </div>
 
 <div id="loading" style="display: none; text-align: center">
-    <img src="/static/loading.gif">
+    <img src="/static/loading.gif" alt="loading">
     <h3>Redirecting to recipes list...</h3>
 </div>
 

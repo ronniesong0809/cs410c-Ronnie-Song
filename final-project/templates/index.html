@@ -1,246 +1,158 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block content %}
 
 <div style="text-align: center;">
 
-	<form style="display: inline" action="{{ url_for('home') }}" method="get">
-		<button onclick="myFunction();" style="text-decoration: none">Go back to home</button>
-	</form>
-
-	<form style="display: inline" action="{{ url_for('add') }}" method="get">
-		<button onclick="myFunction();" style="text-decoration: none">Add a new recipe</button>
-	</form>
-
-	<form style="display: inline" action="{{ url_for('remove') }}" method="get">
-		<button onclick="myFunction();" style="text-decoration: none">Remove an exist recipe</button>
-	</form>
-	<br>
-
+	<a class="btn btn-primary" href="{{ url_for('home') }}" role="button" onclick="myFunction();">Go back to home</a>
+	<a class="btn btn-success" href="{{ url_for('add') }}" role="button" onclick="myFunction();">Add a new recipe</a>
+	<a class="btn btn-danger" href="{{ url_for('remove') }}" role="button" onclick="myFunction();">Remove an exist recipe</a>
+	<br><br>
 </div>
 
-<div id="complex" style="display: none">
-	<button onclick="myFunction();" style="text-decoration: none">Show Original Table</button> {% for rp in rps %}
-	<p class=rp>
-		<div class="card">
 
-			<div style="text-align: center;">
-				<img src="{{ rp.url }}" alt="Avatar" style="width:50%;" align="middle">
-				<p>Labels: {{ rp.url_description }}</p>
-			</div>
+<div id="complex" style="display: none;">
+	<a class="btn btn-warning" role="button" onclick="myFunction();" style="position: absolute;left: 10%;">Show Simple Table</a>
+	{% for rp in rps %}
+	<div class="card" style="width: 40%;margin:0 auto;">
+		<img class="card-img-top" src="{{ rp.url }}" alt="Card image cap">
+		<br>
+		<p style="text-align: center;"><b>Labels</b>: {{ rp.url_description }}</p>
+		<div class="card-body">
+			<h2 class="card-title" style="text-align: center;">{{ rp.title }}</h2>
+			<p class="card-text">{{ rp.description }}</p>
+		</div>
 
-			<div class="container">
-
-				<table>
+		<div class="card-group">
+			<table class="table" style="margin:0 auto;">
+				<thead class="thead-dark">
 					<tr>
-						<th style="width:10%"><b>Elements</b></th>
-						<th style="width:33.33%"><b>Original Text</b></th>
-						<th style="width:33.33%"><b>Language 1</b></th>
-						<th style="width:33.33%"><b>Language 2</b></th>
+						<th scope="col">Original Text</th>
+						<th scope="col">Language 1</th>
+						<th scope="col">Language 2</th>
 					</tr>
-					<tr>
-						<td><b>Title: </b></td>
-						<td>{{ rp.title }}</td>
-						<td>{{ rp.t_title }}</td>
-						<td>{{ rp.t2_title }}</td>
-					</tr>
-					<tr>
-						<td><b>Author: </b></td>
-						<td>{{ rp.author }}</td>
-						<td>{{ rp.t_author }}</td>
-						<td>{{ rp.t2_author }}</td>
-					</tr>
-					<tr>
-						<td><b>Ingredient List: </b></td>
-						<td>{{ rp.ingredient }}</td>
-						<td>{{ rp.t_ingredient }}</td>
-						<td>{{ rp.t2_ingredient }}</td>
-					</tr>
-					<tr>
-						<td><b>Amount of Time: </b></td>
-						<td>{{ rp.time }}</td>
-						<td>{{ rp.t_time }}</td>
-						<td>{{ rp.t2_time }}</td>
-					</tr>
-					<tr>
-						<td><b>Skill Level: </b></td>
-						<td>{{ rp.skill }}</td>
-						<td>{{ rp.t_skill }}</td>
-						<td>{{ rp.t2_skill }}</td>
-					</tr>
-					<tr>
-						<td><b>Description: </b></td>
-						<td>{{ rp.description }}</td>
-						<td>{{ rp.t_description }}</td>
-						<td>{{ rp.t2_description }}</td>
-					</tr>
-				</table>
-			</div>
-
-			<div id="nutritionix">
-				<br>
-				<h2>Nutrients:</h2>
-				<table width="60%">
-					<tr>
-						<th></th>
-						<th>Qty</th>
-						<th>Unit</th>
-						<th>Food</th>
-						<th>Calories</th>
-						<th>Weight</th>
-					</tr>
-					{% for obj in rp.nutrition.foods %}
-					<tr>
-						<td style="text-align: center;"><img src='{{obj.photo.thumb}}' alt='{{obj.photo.food_name}}'></td>
-						<td> {{obj.serving_qty}} </td>
-						<td> {{obj.serving_unit}} </td>
-						<td> {{obj.food_name}} </td>
-						<td> {{obj.nf_calories}} kcal</td>
-						<td> {{obj.serving_weight_grams}} g</td>
-					</tr>
-					{% endfor %}
-					<!--<tbody id="table"></tbody>-->
-				</table>
-				<script>
-					var obj = {{rp.nutrition | tojson}};
-					var x = '';
-					for (var i in obj.foods) {
-						x += "<tr><td><img src='" + obj.foods[i].photo.thumb + "'></td>" +
-							"<td>" + obj.foods[i].serving_qty + "</td>" +
-							"<td>" + obj.foods[i].serving_unit + "</td>" +
-							"<td>" + obj.foods[i].food_name + "</td>" +
-							"<td>" + obj.foods[i].nf_calories + " kcal</td>" +
-							"<td>" + obj.foods[i].serving_weight_grams + " g</td></tr>";
-					}
-					document.getElementById("table").innerHTML = x;
-				</script>
-			</div>
-
-			<div id="yelp">
-				<br>
-				<h2>Yelp</h2>
-				<h6>If you don't want to make it yourself, you can try this recipe at the following restaurants:</h6>
-				
-				{% for obj in rp.yelp.businesses %}
-				<table width="60%">				    
-					<!--<td style="width:50%;text-align: center;">
-						Name: {{ rp.yelp.businesses[0].name }}
-						<img src="{{ rp.yelp.businesses[0].image_url }}" alt="Avatar" style="width:80%;">
-					</td>
-					<td style="width:50%">
-						<table>
-							<tr>
-								<td>Reviews: </td>
-								<td> {{ rp.yelp.businesses[0].review_count }} </td>
-							</tr>
-							<tr>
-								<td>Rating: </td>
-								<td> {{ rp.yelp.businesses[0].rating }} stars</td>
-							</tr>
-							<tr>
-								<td>Categories: </td>
-								<td> {{ rp.yelp.businesses[0].categories }} </td>
-							</tr>
-							<tr>
-								<td>Location: </td>
-								<td> {{ rp.yelp.businesses[0].location.address1 }} {{ rp.yelp.businesses[0].location.city }} {{ rp.yelp.businesses[0].location.state }} {{ rp.yelp.businesses[0].location.zip_code }}</td>
-							</tr>
-							<tr>
-								<td>Price: </td>
-								<td> {{ rp.yelp.businesses[0].price }}</td>
-							</tr>
-							<tr>
-								<td>More info</td>
-								<td> <a href="{{ rp.yelp.businesses[0].url }}">Here</a></td>
-							</tr>
-						</table>
-					</td>-->
-					<td style="width:50%;text-align: center;">
-						<h3><b> {{ obj.name }} </b></h3>
-						<h5> {{ obj.rating }} stars from {{ obj.review_count }} reviews</h5> 
-						<img src="{{ obj.image_url }}" alt="Avatar" style="height:20%">
-					</td>
-					<td style="width:50%">
-						<table>
-							<tr>
-								<td> Price: </td>
-								<td> {{ obj.price }} </td>
-							</tr>
-							<tr>
-								<td> Categories: </td>
-								<td>
-								{% for x in obj.categories %}
-								    {{ x.title }}, 
-								{% endfor %}
-								</td>
-							</tr>
-							<tr>
-								<td> Location: </td>
-								<td> {{ obj.location.address1 }} {{ obj.location.city }} {{ obj.location.state }}, {{ obj.location.zip_code }}</td>
-							</tr>
-							<tr>
-								<td> Phone: </td>
-								<td> {{ obj.phone }}</td>
-							</tr>
-							<tr>
-								<td>More:</td>
-								<td> <a href="{{ obj.url }}">Here</a></td>
-							</tr>
-						</table>
-					</td>					
-				</table>
-				{% endfor %}
-			</div>
+				</thead>
+				<tr>
+					<td> {{ rp.title }} </td>
+					<td> {{ rp.t_title }} </td>
+					<td> {{ rp.t2_title }} </td>
+				</tr>
+				<tr>
+					<td> {{ rp.description }} </td>
+					<td> {{ rp.t_description }} </td>
+					<td> {{ rp.t2_description }} </td>
+				</tr>
+				<tr>
+					<td> {{ rp.author }} </td>
+					<td> {{ rp.t_author }} </td>
+					<td> {{ rp.t2_author }} </td>
+				</tr>
+				<tr>
+					<td> {{ rp.ingredient }} </td>
+					<td> {{ rp.t_ingredient }} </td>
+					<td> {{ rp.t2_ingredient }} </td>
+				</tr>
+				<tr>
+					<td> {{ rp.skill }} </td>
+					<td> {{ rp.t_skill }} </td>
+					<td> {{ rp.t2_skill }} </td>
+				</tr>
+				<tr>
+					<td> {{ rp.time }} </td>
+					<td> {{ rp.t_time }} </td>
+					<td> {{ rp.t2_time }} </td>
+				</tr>
+			</table>
 
 		</div>
-	</p>
+	</div>
+	<br>
+	<br>
 
+	<div id="nutritionix">
+		<div class="card" style="width: 40%;margin:0 auto;text-align:center;">
+			<h5 class="card-title">Nutrients</h5>
+			<h6 class="card-subtitle mb-2 text-muted"> Nutrients in recipe</h6>
+			<table class="table" style="margin:0 auto;">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Qty</th>
+						<th scope="col">Unit</th>
+						<th scope="col">Food</th>
+						<th scope="col">Calories</th>
+						<th scope="col">Weight</th>
+					</tr>
+				</thead>
+				{% for obj in rp.nutrition.foods %}
+				<tr>
+					<td scope="row">
+						<img src='{{obj.photo.thumb}}' alt='{{obj.photo.food_name}}' style="max-height:40px;">
+					</td>
+					<td valign="center"> {{obj.serving_qty}} </td>
+					<td> {{obj.serving_unit}} </td>
+					<td> {{obj.food_name}} </td>
+					<td> {{obj.nf_calories}} kcal</td>
+					<td> {{obj.serving_weight_grams}} g</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	<br>
+	<br>
+
+	<div id="yelp">
+		<div class="card" style="width: 40%;margin:0 auto;text-align:center;">
+			<h5 class="card-title">Yelp</h5>
+			<h6 class="card-subtitle mb-2 text-muted"> If you don't want to make it yourself, you can try this recipe at the following restaurants</h6>
+			<div class="card-group" style="margin:0 auto;">
+				{% for obj in rp.yelp.businesses %}
+				<div class="card" style="width:30%;">
+					<div style="max-height:120px;width:100%;position:relative;overflow:hidden">
+						<img class="card-img-top" src="{{ obj.image_url }}" alt="Card image">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title"> <b> {{ obj.name }} </b> </h5>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"> <b>{{ obj.rating }}</b> stars from <b>{{ obj.review_count }}</b> reviews </li>
+							<li class="list-group-item"> Price: <b>{{ obj.price }}</b> </li>
+							<li class="list-group-item"> <b>Categories</b>: {% for x in obj.categories %} {{ x.title }}, {% endfor %} </li>
+							<li class="list-group-item"> {{ obj.location.address1 }} {{ obj.location.city }} {{ obj.location.state }}, {{ obj.location.zip_code }} </li>
+							<li class="list-group-item"> <b>Phone</b>: {{ obj.phone }} </li>
+						</ul>
+						<br><a href="{{ obj.url }}" class="btn btn-primary ">Learn More </a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
 	{% endfor %}
 </div>
 
+
+
+
 <div id="simple">
-
-	<button onclick="myFunction();" style="text-decoration: none">Show Complex Table</button> {% for rp in rps %}
-	<p class=rp>
-		<div class="card">
-
-			<div style="text-align: center;">
-				<img src="{{ rp.url }}" alt="Avatar" style="width:50%;" align="middle">
-			</div>
-
-			<div class="container">
-
-				<table>
-					<tr>
-						<th><b>Elements</b></td>
-							<th><b>Original Text</b></th>
-					</tr>
-					<tr>
-						<td><b>Title: </b></td>
-						<td>{{ rp.title }}</td>
-					</tr>
-					<tr>
-						<td><b>Author: </b></td>
-						<td>{{ rp.author }}</td>
-					</tr>
-					<tr>
-						<td><b>Ingredient List: </b></td>
-						<td>{{ rp.ingredient }}</td>
-					</tr>
-					<tr>
-						<td><b>Amount of Time: </b></td>
-						<td>{{ rp.time }}</td>
-					</tr>
-					<tr>
-						<td><b>Skill Level: </b></td>
-						<td>{{ rp.skill }}</td>
-					</tr>
-					<tr>
-						<td><b>Description: </b></td>
-						<td>{{ rp.description }}</td>
-					</tr>
-				</table>
-			</div>
+	<a class="btn btn-warning" role="button" onclick="myFunction();" style="position: absolute;left: 10%;">Show Complex Table</a>
+	{% for rp in rps %}
+	<div class="card" style="width: 40%;margin:0 auto;">
+		<img class="card-img-top" src="{{ rp.url }} " alt="Card image cap">
+		<div class="card-body">
+			<h2 class="card-title" style="text-align: center;">{{ rp.title }}</h2>
+			<p class="card-text">{{ rp.description }}</p>
 		</div>
-	</p>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">{{ rp.author }}</li>
+			<li class="list-group-item">{{ rp.ingredient }}</li>
+			<li class="list-group-item">{{ rp.skill }}</li>
+			<li class="list-group-item">{{ rp.time }}</li>
+		</ul>
+	</div>
+	<br>
+	<br>
 	{% endfor %}
 </div>
 
